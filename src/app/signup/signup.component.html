@@ -1,0 +1,63 @@
+<!-- component -->
+<app-header></app-header>
+
+<body class="bg-gray-50 min-h-screen flex items-center justify-center ">
+
+    <div class="bg-white p-8 rounded shadow-md max-w-md w-full mx-auto mb-20">
+        <a href="#" class="flex items-center mb-4 font-medium text-gray-900 title-font md:mb-0 justify-center">
+            <img src="/assets/img/logo.png" class="mb-10 h-7 w-28 md:w-28 md:h-8" alt="" >
+        </a>
+        <h2 class="text-2xl font-semibold font-serif text-center text-black mb-8">Inscription</h2>
+
+        <form action="#" method="POST">
+            <!-- Nom et Prénom -->
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label for="firstName" class="block text-sm font-bold font-serif text-gray-700">Prénom</label>
+                    <input type="text" placeholder="firstName" name="firstName" class="mt-1 p-2 w-full border rounded-md">
+                </div>
+                <div>
+                    <label for="lastName" class="block text-sm font-bold font-serif text-gray-700">Nom</label>
+                    <input type="text" placeholder="lastName" name="lastName" class="mt-1 p-2 w-full border rounded-md">
+                </div>
+            </div>
+
+            <!-- Adresse email -->
+            <div class="grid grid-cols-2 gap-4">
+            <div class="mt-4">
+                <label for="email" class="block text-sm font-bold font-serif text-gray-700">Adresse email</label>
+                <input type="email" placeholder="email" name="email" class="mt-1 p-2 w-full border rounded-md">
+            </div>
+            <div class="mt-4">
+                <label for="telephone" class="block text-sm font-bold font-serif text-gray-700">Téléphone</label>
+                <input type="text" placeholder="Téléphone" name="telephone" class="mt-1 p-2 w-full border rounded-md">
+            </div>
+            </div>
+            <!-- Mot de passe -->
+            <div class="mt-4">
+                <label for="password" class="block text-sm font-bold font-serif text-gray-700">Mot de passe</label>
+                <input type="password" placeholder="password" name="password" class="mt-1 p-2 w-full border rounded-md">
+            </div>
+            <!--  confirme Mot de passe -->
+
+            <div class="mt-4">
+                <label for="password" class="block text-sm font-bold font-serif text-gray-700">Confirmer Mot de passe</label>
+                <input type="password" placeholder="Confirmer password" name="password" class="mt-1 p-2 w-full border rounded-md">
+            </div>
+
+            <!-- Bouton d'inscription -->
+            <div class="mt-6">
+                <button type="submit" class="w-full p-3 bg-green-800 font-bold font-serif text-white rounded-md hover:bg-green-600">S'inscrire</button>
+            </div>
+            <div class="mt-2 ml-5 w-96 pb-4">
+                <p class="block text-sm font-medium  text text-center font-serif text-gray-700">Avez-vous déjà un compte! 
+                  <a href="/signin" class="text-sm text-center font-medium text-green-600 hover:underline"> 
+                    S'identifier
+                  </a>
+                </p>
+              </div>
+        </form>
+    </div>
+
+</body>
+<app-footer></app-footer>
