@@ -14,6 +14,8 @@ import { EducationComponent } from './education/education.component';
 import { SocialComponent } from './social/social.component';
 import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component';
+import { CategorieComponent } from './categorie/categorie.component';
+import { PaymentComponent } from './payment/payment.component';
 
 
 const routes: Routes = [
@@ -72,6 +74,14 @@ const routes: Routes = [
   { 
     path: 'about', 
     component: AboutComponent
+  },
+  { 
+    path: 'categorie', 
+    component: CategorieComponent
+  },
+  { 
+    path: 'payment', 
+    component: PaymentComponent
   },
   { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
 ];

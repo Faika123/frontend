@@ -1,1 +1,67 @@
-<p>education works!</p>
+<app-header></app-header>
+<div >
+    <div class="md:grid grid-cols-4 grid-rows-2  bg-white gap-2 p-4 rounded-xl mt-20 ">
+         <div class="md:col-span-1 h-48 shadow-xl ">
+                 <div class="flex w-full h-full relative">
+                     <img src="https://res.cloudinary.com/dboafhu31/image/upload/v1625318266/imagen_2021-07-03_091743_vtbkf8.png" class="w-44 h-44 m-auto" alt="">
+ 
+                 </div>
+         </div>
+         <div class="md:col-span-3 h-48 shadow-xl p-4 space-y-2 p-3">
+            <form action="#" class="flex flex-col space-y-8">
+  
+                <div>
+                  <h3 class="text-2xl text-center font-semibold font-serif">Mes Informations</h3>
+                
+                </div>
+               <div class="pl-2">
+                <div class="grid grid-cols-2 gap-4">
+                  <div>
+                      <label for="firstName" class="block text-sm font-bold font-serif text-gray-700">Prénom</label>
+                      <input type="text" placeholder="firstName" name="firstName" class="mt-1 p-2 w-full border rounded-md">
+                  </div>
+                  <div>
+                      <label for="lastName" class="block text-sm font-bold font-serif text-gray-700">Nom</label>
+                      <input type="text" placeholder="lastName" name="lastName" class="mt-1 p-2 w-full border rounded-md">
+                  </div>
+              </div>
+    
+              <!-- Adresse email -->
+              <div class="grid grid-cols-2 gap-4">
+              <div class="mt-4">
+                  <label for="email" class="block text-sm font-bold font-serif text-gray-700">Adresse email</label>
+                  <input type="email" placeholder="email" name="email" class="mt-1 p-2 w-full border rounded-md">
+              </div>
+              <div class="mt-4">
+                  <label for="telephone" class="block text-sm font-bold font-serif text-gray-700">Téléphone</label>
+                  <input type="text" placeholder="Téléphone" name="telephone" class="mt-1 p-2 w-full border rounded-md">
+              </div>
+              </div>
+              <div class="grid grid-cols-2 gap-4">
+              <!-- Mot de passe -->
+              <div class="mt-4">
+                  <label for="password" class="block text-sm font-bold font-serif text-gray-700">Mot de passe</label>
+                  <input type="password" placeholder="password" name="password" class="mt-1 p-2 w-full border rounded-md">
+              </div>
+              <!--  confirme Mot de passe -->
+    
+              <div class="mt-4">
+                  <label for="password" class="block text-sm font-bold font-serif text-gray-700">Confirmer Mot de passe</label>
+                  <input type="password" placeholder="Confirmer password" name="password" class="mt-1 p-2 w-full border rounded-md">
+              </div>
+              </div>
+            </div>
+              <!-- Bouton d'inscription -->
+              <div class="mt-6">
+                  <button type="submit" class="w-72 p-2 ml-48 bg-gray-700 font-bold font-serif text-white rounded-md hover:bg-green-900">Mettre à jour mes informations</button>
+              </div>
+              <a href="#" class="text-red-600 font-semibold text-md">Supprimer mon compte</a>
+               
+      
+      
+              </form>
+         </div>
+
+             
+     </div>
+ </div>
