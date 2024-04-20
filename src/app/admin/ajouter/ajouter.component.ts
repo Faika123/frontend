@@ -9,7 +9,9 @@ import { Router } from '@angular/router';
 })
 export class AjouterComponent {
   categories: any[] = [];
+  types: any[] = []; 
   selectedCategorie: any;
+  selectedType: any;
   AjouterEvent: any = {
     titre: '',
     description: '',
@@ -17,7 +19,8 @@ export class AjouterComponent {
     lieu: '',
     places_disponibles: '',
     type_event: '',
-    selectedCategorie: '', // Déclaration de la propriété selectedCategorie
+    selectedCategorie: '',
+    selectedType: '',  
     date_deb: '',
     date_fin: '',
     photo_url: '',
@@ -27,6 +30,7 @@ export class AjouterComponent {
 
   ngOnInit(): void {
     this.listerCategories();
+    this.listerTypes();
   }
 
   listerCategories(): void {
@@ -36,22 +40,28 @@ export class AjouterComponent {
     });
   }
 
+  listerTypes(): void {
+    this.http.get<any[]>('http://localhost:3010/lister').subscribe(data => {
+      this.types = data; 
+      console.log('types == '+ this.types);
+    });
+  }
+
   onSubmit() {
-    // Définir une variable pour stocker les noms des champs obligatoires
     const champsObligatoires = [
       'titre',
       'description',
       'prix',
       'lieu',
       'places_disponibles',
-      'type_event',
+     
       'date_deb',
       'date_fin',
       'photo_url',
       'selectedCategorie',
+      'selectedType',
     ];
-
-    // Parcourir la liste des champs obligatoires et vérifier s'ils sont remplis
+  
     for (const champ of champsObligatoires) {
       if (!this.AjouterEvent[champ]) {
         console.error(`Le champ ${champ} est obligatoire`);
@@ -59,14 +69,18 @@ export class AjouterComponent {
         return;
       }
     }
-
-    // Convertir la date de début en objet Date
+  
+    if (!this.AjouterEvent.date_deb) {
+      console.error('Le champ date_deb est obligatoire');
+      alert('Le champ date_deb est obligatoire');
+      return;
+    }
+  
     const dateDebut = new Date(this.AjouterEvent.date_deb);
-
-// Envoyer la requête HTTP
-this.http.post('http://localhost:3006/ajouter', {
-  ...this.AjouterEvent,
-  date_deb: dateDebut,
+  
+    this.http.post('http://localhost:3006/ajouter', {
+      ...this.AjouterEvent,
+      date_deb: dateDebut,
     }).subscribe({
       next: (res: any) => {
         alert('Événement ajouté avec succès');
@@ -74,8 +88,7 @@ this.http.post('http://localhost:3006/ajouter', {
       },
       error: (error) => {
         console.error('event Error:', error);
-
-        // Gérer les erreurs de validation de la date
+  
         if (error.error && error.error.errors && error.error.errors.date_deb) {
           const erreursDate = error.error.errors.date_deb;
           let messageErreur = 'Le champ date_deb est invalide : ';
@@ -89,4 +102,5 @@ this.http.post('http://localhost:3006/ajouter', {
       }
     });
   }
+  
 }

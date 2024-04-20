@@ -23,7 +23,7 @@ export class SigninComponent {
       },
      error: (error) => {
       console.error('login error:', error);
-      alert('login failed. please check your credentials');
+      console.log('login failed. please check your credentials');
      }
     });
     console.log( this.data);

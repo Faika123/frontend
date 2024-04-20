@@ -21,4 +21,9 @@ export class EventComponent implements OnInit {
       this.evenements = data;
     });
   }
+  deleteEvent(id: number): void {
+    this.http.delete(`http://localhost:3006/${id}/supprimer`).subscribe(() => {
+      this.evenements = this.evenements.filter(u => u.categorie_id !== id);
+    });
+}
 }

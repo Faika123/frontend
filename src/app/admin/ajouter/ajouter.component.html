@@ -52,20 +52,17 @@
       </div>
       <div class="mt-4">
         <label for="type" class="block text-sm font-medium text-gray-700 ">Type des évènements</label>
-        <select [(ngModel)]="AjouterEvent.type_event" id="categorie" name="categorie" class="mt-1 block w-80 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm 
+        <select [(ngModel)]="selectedType" id="type" name="type" class="mt-1 block w-80 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm 
                       focus:outline-none focus:ring-gray-900 focus:border-gray-900 sm:text-sm">
-          <option value="Sport">Sportif</option>
-          <option value="Environnement">Social</option>
-          <option value="Animaux">culturel</option>
-          <option value="Santé">Bien-etre</option>
-          <option value="Associations">Educatif</option>
+        <option *ngFor="let type of types" [value]="type.type_id">{{ type.nom }}</option>
+
         </select>
       </div>
       <div class="mt-4">
         <label for="categorie" class="block text-sm font-medium text-gray-700">Catégories</label>
         <select id="categorie" name="categorie" class="mt-1 block w-80 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm 
                             focus:outline-none focus:ring-gray-900 focus:border-gray-900 sm:text-sm" [(ngModel)]="selectedCategorie">
-          <option *ngFor="let categorie of categories" [value]="categorie.id_categorie">{{ categorie.nom }}</option>
+          <option *ngFor="let categorie of categories" [value]="categorie.categorie_id">{{ categorie.nom }}</option>
         </select>
       </div>
       

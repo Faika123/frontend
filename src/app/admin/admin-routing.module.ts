@@ -10,6 +10,12 @@ import { AjouterComponent } from './ajouter/ajouter.component';
 import { NotificationComponent } from './notification/notification.component';
 import { RestaurerUserComponent } from './restaurer-user/restaurer-user.component';
 import { CategorieComponent } from '../categorie/categorie.component';
+import { AjouterCategorieComponent } from './ajouter-categorie/ajouter-categorie.component';
+import { CategoriesComponent } from './categories/categories.component';
+import { ModifierCategorieComponent } from './modifier-categorie/modifier-categorie.component';
+import { AjouterTypeComponent } from './ajouter-type/ajouter-type.component';
+import { TypeComponent } from './type/type.component';
+import { ModifierTypeComponent } from './modifier-type/modifier-type.component';
 
 const routes: Routes = [
   { path: '', 
@@ -48,8 +54,28 @@ const routes: Routes = [
         component: RestaurerUserComponent,
       },
       {
-        path: 'categorie',
-        component: CategorieComponent,
+        path: 'ajouter-categorie',
+        component: AjouterCategorieComponent,
+      },
+      {
+        path: 'Categories',
+        component: CategoriesComponent,
+      },
+      {
+        path: 'modifier-categorie/:id',
+        component: ModifierCategorieComponent,
+      },
+      {
+        path: 'ajouter-type',
+        component: AjouterTypeComponent,
+      },
+      {
+        path: 'type',
+        component: TypeComponent,
+      },
+      {
+        path: 'modifier-type/:id',
+        component: ModifierTypeComponent,
       },
     ],
   },

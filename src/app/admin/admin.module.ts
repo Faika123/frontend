@@ -14,7 +14,13 @@ import { AcceuilComponent } from './acceuil/acceuil.component';
 import { AjouterComponent } from './ajouter/ajouter.component';
 import { NotificationComponent } from './notification/notification.component';
 import { RestaurerUserComponent } from './restaurer-user/restaurer-user.component';
-import { CategorieComponent } from './categorie/categorie.component';
+import { AjouterCategorieComponent } from './ajouter-categorie/ajouter-categorie.component';
+import { CategoriesComponent } from './categories/categories.component';
+import { ModifierCategorieComponent } from './modifier-categorie/modifier-categorie.component';
+import { TypeComponent } from './type/type.component';
+import { ModifierTypeComponent } from './modifier-type/modifier-type.component';
+import { AjouterTypeComponent } from './ajouter-type/ajouter-type.component';
+
 
 
 @NgModule({
@@ -28,7 +34,13 @@ import { CategorieComponent } from './categorie/categorie.component';
     AjouterComponent,
     NotificationComponent,
     RestaurerUserComponent,
-    CategorieComponent
+    AjouterCategorieComponent,
+    CategoriesComponent,
+    ModifierCategorieComponent,
+    TypeComponent,
+    ModifierTypeComponent,
+    AjouterTypeComponent,
+   
   ],
   imports: [
     CommonModule,

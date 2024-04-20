@@ -23,12 +23,12 @@ export class SignupComponent {
   onSubmit() {
     this.http.post('http://localhost:3005/signup', this.signup).subscribe({
       next: (res: any) => {
-        alert('Signup Success');
+        console.log('Signup Success');
         this.router.navigateByUrl('/signin');
       },
       error: (error) => {
         console.error('Signup Error:', error);
-        alert('Signup Failed. Please try again.');
+        console.log('Signup Failed. Please try again.');
       }
     });
   }
