@@ -10,23 +10,26 @@ import { Router } from '@angular/router';
 export class SigninComponent {
   data: any = {
     email: '',
-    mot_de_passe:  ''
+    mot_de_passe: ''
   };
-
-  constructor(private http: HttpClient, private router: Router){}
+  constructor(private http: HttpClient, private router: Router) { }
+  
   onSubmit() {
     this.http.post('http://localhost:3005/login', this.data).subscribe({
       next: (res: any) => {
-      console.log('token retrieved: ' , res.token);
-       localStorage.setItem('loginToken', res.token);
-       this.router.navigateByUrl('')
+        console.log('token retrieved: ', res.token);
+        localStorage.setItem('loginToken', res.token);
+        this.router.navigateByUrl('');
       },
-     error: (error) => {
-      console.error('login error:', error);
-      console.log('login failed. please check your credentials');
-     }
+      error: (error) => {
+        console.error('login error:', error);
+        console.log('login failed. please check your credentials');
+      }
     });
-    console.log( this.data);
-    
+  }
+
+  logout(): void {
+    localStorage.removeItem('loginToken');
+    this.router.navigate(['/login']);
   }
 }

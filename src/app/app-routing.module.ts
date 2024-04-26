@@ -16,6 +16,8 @@ import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component';
 import { CategorieComponent } from './categorie/categorie.component';
 import { PaymentComponent } from './payment/payment.component';
+import { SiderbarCategorieComponent } from './siderbar-categorie/siderbar-categorie.component';
+
 
 
 const routes: Routes = [
@@ -45,7 +47,9 @@ const routes: Routes = [
   },
   { 
     path: 'profile', 
-    component: ProfileComponent 
+    component: ProfileComponent,  
+    
+
   },
   { 
     path: 'culture', 
@@ -83,7 +87,10 @@ const routes: Routes = [
     path: 'payment', 
     component: PaymentComponent
   },
-  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
+  { 
+    path: 'siderbar-categorie', 
+    component: SiderbarCategorieComponent
+  },
 ];
 
 

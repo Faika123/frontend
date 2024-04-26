@@ -1,0 +1,63 @@
+<div class="fixed flex flex-col left-0 w-14 hover:w-64 md:w-64 bg-gray-100 dark:bg-gray-200 h-full text-black transition-all duration-300 border-none z-10 sidebar">
+	<span class="hidden md:block text-center font-bold font-serif mt-16">Liste des évènements</span>
+	<div class="relative border-b border-gray-200 ">
+	  <div class="flex flex-col py-4 space-y-1">
+		<button class="middle none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-8 max-w-[32px] h-8 max-h-[32px] rounded-lg text-xs text-blacke hover:bg-black/10 active:bg-black/30 absolute right-0 top-0 grid rounded-br-none rounded-tl-none xl:hidden">
+		  <span class="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2">
+			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" aria-hidden="true" class="h-5 w-5 text-black">
+			  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+			</svg>
+		  </span>
+		</button>
+	  </div>
+	  <div class="m-4">
+		<ul class="mb-4 flex flex-col gap-1">
+		  <li>
+			<button type="button" class="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" aria-controls="dropdown-social" data-collapse-toggle="dropdown-social">
+			  <span class="flex-1 ml-10 text-left whitespace-nowrap font-bold ">Social</span>
+			  <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+			</button>
+			<ul id="dropdown-social" class="hidden py-2 space-y-2">
+			  <li><a href="#" class="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 pl-11">spectacle</a></li>
+			  <li><a href="#" class="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 pl-11">theatre</a></li>
+			  <li><a href="#" class="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 pl-11">cinema</a></li>
+			</ul>
+		  </li>
+		  <li>
+			<button type="button" class="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" aria-controls="dropdown-sport" data-collapse-toggle="dropdown-sport">
+			  <span class="flex-1 ml-10 text-left whitespace-nowrap font-bold ">Sport</span>
+			  <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+			</button>
+			<ul id="dropdown-sport" class="hidden py-2 space-y-2">
+			  <li><a href="#" class="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 pl-11">Yoga</a></li>
+			  <li><a href="#" class="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 pl-11">seance d'entrainement</a></li>
+			  <li><a href="#" class="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 pl-11">Invoice</a></li>
+			</ul>
+		  </li>
+		  <li>
+			<button type="button" class="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" aria-controls="dropdown-education" data-collapse-toggle="dropdown-education">
+			  <span class="flex-1 ml-10 text-left whitespace-nowrap font-bold ">Education</span>
+			  <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+			</button>
+			<ul id="dropdown-education" class="hidden py-2 space-y-2">
+			  <li><a href="#" class="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 pl-11">atelier</a></li>
+			  <li><a href="#" class="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 pl-11">conférence</a></li>
+
+			</ul>
+		  </li>
+		  <li>
+			<button type="button" class="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" aria-controls="dropdown-santé" data-collapse-toggle="dropdown-santé">
+			  <span class="flex-1 ml-10 text-left whitespace-nowrap font-bold ">Santé</span>
+			  <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+			</button>
+			<ul id="dropdown-santé" class="hidden py-2 space-y-2">
+			  <li><a href="#" class="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 pl-11">Yoga</a></li>
+			  <li><a href="#" class="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 pl-11">seance d'entrainement</a></li>
+			  <li><a href="#" class="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 pl-11">Invoice</a></li>
+			</ul>
+		  </li>
+		</ul>
+	  </div>
+	</div>
+  </div>
+  

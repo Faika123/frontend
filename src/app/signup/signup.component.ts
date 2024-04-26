@@ -14,7 +14,6 @@ export class SignupComponent {
     email: '',
     mot_de_passe: '',
     tel: '',
-    type_utilisateur: '',
     photo_url: ''
   };
 

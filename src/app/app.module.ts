@@ -23,6 +23,7 @@ import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component';
 import { CategorieComponent } from './categorie/categorie.component';
 import { PaymentComponent } from './payment/payment.component';
+import { SiderbarCategorieComponent } from './siderbar-categorie/siderbar-categorie.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { PaymentComponent } from './payment/payment.component';
     ContactComponent,
     AboutComponent,
     CategorieComponent,
-    PaymentComponent
+    PaymentComponent,
+    SiderbarCategorieComponent
   ],
   imports: [
     BrowserModule,
