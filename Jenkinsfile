@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        DOCKER_PATH = "C:\Program Files\Docker\cli-plugins"
+        DOCKER_PATH = "C:/Program Files/Docker/cli-plugins"
         PATH = "${DOCKER_PATH}:${PATH}"
         DOCKERHUB_CREDENTIALS = credentials('DockerHub')
         NODEJS_PATH = "C:\Program Files\nodejs"
