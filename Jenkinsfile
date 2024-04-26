@@ -7,6 +7,15 @@ pipeline {
         NODEJS_PATH = "C:/Program Files/nodejs"
     }
     stages {
+        stage('Install Node.js and npm') {
+            steps {
+                script {
+                    def nodejs = tool name: 'NODEJS', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
+                    env.PATH = "${nodejs}/bin:${env.PATH}"
+                }
+            }
+        }
+
         stage('Checkout') {
             steps {
                 script {
@@ -14,28 +23,22 @@ pipeline {
                 }
             }
         }
-        stage('Install Node.js and npm') {
-            steps {
-                script {
-                    def nodejs = tool name: 'NODEJS', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
-                    env.PATH = "${NODEJS_PATH}/bin:${env.PATH}"
-                }
-            }
-        }
+   
         stage('Build & rename Docker Image') {
             steps {
                 script {
                     // Construisez l'image Docker
-                    bat "docker build -t frontend:${BUILD_ID} faika"
-                    bat "docker tag frontend:${BUILD_ID} faika/frontend:${BUILD_ID}"
+                    bat "docker build -t frontend-image:${BUILD_ID} ."
+                    bat "docker tag frontend-image:${BUILD_ID} faika/frontend-image:${BUILD_ID}"
                 }
             }
         }
+
         stage('Run Docker Container') {
             steps {
                 script {
                     // Exécutez le conteneur Docker en utilisant l'image construite
-                    bat "docker run -d -p 8888:83 --name faika_${BUILD_ID} faika/frontend:${BUILD_ID}"
+                    bat "docker run -d -p 8888:83 --name frontend_container_${BUILD_ID} faika/frontend-image:${BUILD_ID}"
                 }
             }
         }
