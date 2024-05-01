@@ -1,19 +1,12 @@
 pipeline {
     agent any
     environment {
-        DOCKER_PATH = "C:\Program Files\Docker\cli-plugins"
+        DOCKER_PATH = "C:/Program Files/Docker/cli-plugins"
         PATH = "${DOCKER_PATH}:${PATH}"
-        DOCKERHUB_CREDENTIALS = credentials('DockerHub')
-        NODEJS_PATH = "C:\Program Files\nodejs"
+        //DOCKERHUB_CREDENTIALS = credentials('DockerHub')
+        NODEJS_PATH = "C:/Program Files/nodejs"
     }
     stages {
-        stage('Checkout') {
-            steps {
-                script {
-                    checkout scm
-                }
-            }
-        }
         stage('Install Node.js and npm') {
             steps {
                 script {
@@ -46,8 +39,8 @@ pipeline {
 //     steps {
 //         script {
 //             // Construisez l'image Docker
-//             bat docker build -t "project:${BUILD_ID}" .
-//             bat "docker tag project-Image:${BUILD_ID} faika/project:${BUILD_ID} "
+//             bat docker build -t "frontend:${BUILD_ID}" .
+//             bat "docker tag frontend-Image:${BUILD_ID} faika/frontend:${BUILD_ID} "
 //         }
 //     }
 // }
@@ -55,8 +48,8 @@ pipeline {
     steps {
         script {
             // Construisez l'image Docker
-            bat "docker build -t project:${BUILD_ID} faika"
-            bat "docker tag project:${BUILD_ID} faika/project:${BUILD_ID}"
+            bat "docker build -t frontend:${BUILD_ID} faika"
+            bat "docker tag frontend:${BUILD_ID} faika/frontend:${BUILD_ID}"
         }
     }
 }
@@ -64,10 +57,12 @@ pipeline {
     steps {
         script {
             // Exécutez le conteneur Docker en utilisant l'image construite
-            bat "docker run -d -p 8888:83 --name faika_${BUILD_ID} faika/project-image:${BUILD_ID}"
+            bat "docker run -d -p 8888:83 --name faika_${BUILD_ID} faika/frontend-image:${BUILD_ID}"
         }
     }
 }
+
+
 
 
     }
