@@ -3,7 +3,6 @@ pipeline {
     environment {
         DOCKER_PATH = "C:/Program Files/Docker/cli-plugins"
         PATH = "${DOCKER_PATH}:${PATH}"
-        //DOCKERHUB_CREDENTIALS = credentials('DockerHub')
         NODEJS_PATH = "C:/Program Files/nodejs"
     }
     stages {
@@ -15,55 +14,23 @@ pipeline {
                 }
             }
         }
-        // stage('Build Angular Application') {
-        //     steps {
-        //       script {  
-        //         bat 'npm install'  // Installez les dépendances du projet avec "bat"
-        //         bat 'npm run build' // Construisez l'application Angular avec "bat"
-        //     }
-        // }}
-        // stage('Publish Artifact') {
-        //     steps {
-        //       script{
-        //         archiveArtifacts 'dist'  // Archivez les fichiers de l'application construite
-        //     }}
-        // }
-//       stage('Publish Artifact') {
-//     steps {
-//         script {
-//             archiveArtifacts artifacts: 'dist/**', allowEmptyArchive: true
-//         }
-//     }
-// }
-//       stage('Build & rename Docker Image') {
-//     steps {
-//         script {
-//             // Construisez l'image Docker
-//             bat docker build -t "project:${BUILD_ID}" .
-//             bat "docker tag project-Image:${BUILD_ID} faika/project:${BUILD_ID} "
-//         }
-//     }
-// }
-      stage('Build & rename Docker Image') {
-    steps {
-        script {
-            // Construisez l'image Docker
-            bat "docker build -t project:${BUILD_ID} faika"
-            bat "docker tag project:${BUILD_ID} faika/project:${BUILD_ID}"
+        stage('Build & rename Docker Image') {
+            steps {
+                script {
+                    // Construire l'image Docker
+                    bat 'docker build -t project:%BUILD_ID% faika'
+                    // Renommer l'image Docker
+                    bat 'docker tag project:%BUILD_ID% faika/project:%BUILD_ID%'
+                }
+            }
         }
-    }
-}
-      stage('Run Docker Container') {
-    steps {
-        script {
-            // Exécutez le conteneur Docker en utilisant l'image construite
-            bat "docker run -d -p 8888:83 --name faika_${BUILD_ID} faika/project-image:${BUILD_ID}"
+        stage('Run Docker Container') {
+            steps {
+                script {
+                    // Exécuter le conteneur Docker en utilisant l'image construite
+                    bat "docker run -d -p 8888:83 --name faika_${BUILD_ID} faika/project:${BUILD_ID}"
+                }
+            }
         }
-    }
-}
-
-
-
-
     }
 }
