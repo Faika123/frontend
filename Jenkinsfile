@@ -1,36 +1,64 @@
 pipeline {
     agent any
+   
     environment {
-        DOCKER_PATH = "C:/Program Files/Docker/cli-plugins"
-        PATH = "${DOCKER_PATH}:${PATH}"
-        NODEJS_PATH = "C:/Program Files/nodejs"
+        NODEJS_HOME = tool name: 'NodeJS', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
+        PATH = "${env.NODEJS_HOME}/bin:${env.PATH}"
+        CHROME_BIN = '/usr/bin/google-chrome' // Path to Chrome binary
+        DOCKER_HUB_REGISTRY = 'docker.io' // Docker Hub registry URL
     }
+   
     stages {
-        stage('Install Node.js and npm') {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+       
+        stage('Install dependencies') {
+            steps {
+                sh 'npm install'
+            }
+        }
+       
+        stage('Build') {
+            steps {
+                sh 'npm run build --prod'
+            }
+        }
+       
+        stage('Build Docker image') {
+            steps {
+                sh 'docker build -t project:latest -f Dockerfile .'
+                // Tag the Docker image with a version
+                sh 'docker tag project:latest faika/project:latest'
+            }
+        }
+       
+        stage('Deploy Docker image') {
             steps {
                 script {
-                    def nodejs = tool name: 'NODEJS', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
-                    env.PATH = "${nodejs}/bin:${env.PATH}"
+                    // Push Docker image to Docker Hub
+                    withCredentials([string(credentialsId: 'token', variable: 'DOCKER_TOKEN')]) {
+                        docker.withRegistry('https://index.docker.io/v1/', '12') {
+                            // Push both the latest and tagged images
+                            docker.image('faika/project:latest').push('latest')
+                        }
+                    }
                 }
             }
         }
-        stage('Build & rename Docker Image') {
-            steps {
-                script {
-                    // Construire l'image Docker
-                    bat 'docker build -t project:%BUILD_ID% faika'
-                    // Renommer l'image Docker
-                    bat 'docker tag project:%BUILD_ID% faika/project:%BUILD_ID%'
-                }
-            }
+    }
+
+    post {
+        success {
+            echo 'Build succeeded!'
+            // Add any success post-build actions here
         }
-        stage('Run Docker Container') {
-            steps {
-                script {
-                    // Exécuter le conteneur Docker en utilisant l'image construite
-                    bat "docker run -d -p 8888:83 --name faika_${BUILD_ID} faika/project:${BUILD_ID}"
-                }
-            }
+       
+        failure {
+            echo 'Build failed!'
+            // Add any failure post-build actions here
         }
     }
 }
