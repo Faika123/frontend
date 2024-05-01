@@ -4,8 +4,8 @@ pipeline {
     environment {
         NODEJS_HOME = tool name: 'NodeJS', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
         PATH = "${env.NODEJS_HOME}/bin:${env.PATH}"
-        CHROME_BIN = '/usr/bin/google-chrome' // Path to Chrome binary
-        DOCKER_HUB_REGISTRY = 'docker.io' // Docker Hub registry URL
+        CHROME_BIN = '/usr/bin/google-chrome' // Chemin vers l'exécutable Chrome
+        DOCKER_HUB_REGISTRY = 'docker.io' // URL du registre Docker Hub
     }
    
     stages {
@@ -30,7 +30,7 @@ pipeline {
         stage('Build Docker image') {
             steps {
                 sh 'docker build -t project:latest -f Dockerfile .'
-                // Tag the Docker image with a version
+                // Taguer l'image Docker avec une version
                 sh 'docker tag project:latest faika/project:latest'
             }
         }
@@ -38,10 +38,10 @@ pipeline {
         stage('Deploy Docker image') {
             steps {
                 script {
-                    // Push Docker image to Docker Hub
+                    // Pousse l'image Docker vers Docker Hub
                     withCredentials([string(credentialsId: 'token', variable: 'DOCKER_TOKEN')]) {
                         docker.withRegistry('https://index.docker.io/v1/', '12') {
-                            // Push both the latest and tagged images
+                            // Pousse à la fois les images latest et taggées
                             docker.image('faika/project:latest').push('latest')
                         }
                     }
@@ -53,12 +53,12 @@ pipeline {
     post {
         success {
             echo 'Build succeeded!'
-            // Add any success post-build actions here
+            // Ajoutez ici toutes les actions post-build en cas de succès
         }
        
         failure {
             echo 'Build failed!'
-            // Add any failure post-build actions here
+            // Ajoutez ici toutes les actions post-build en cas d'échec
         }
     }
 }
