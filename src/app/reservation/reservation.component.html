@@ -1,0 +1,89 @@
+<app-header></app-header>
+
+<div class="flex items-center justify-center min-h-screen bg-gray-50">
+  <div class="w-96 mx-auto md:flex-1 md:h-full md:max-w-xl md:mx-auto bg-white rounded-lg shadow-xl mb-20">
+      <div class="flex flex-col md:flex-row ml-10 md:ml-16 ">
+          <div class="flex items-center justify-center p-6 sm:p-12 md:w-1/2 ">
+              <div class="w-full mt-4 ">
+                  <a href="#" class="flex items-center mb-4 font-medium text-gray-900 title-font md:mb-0 justify-center">
+                      <img src="/assets/img/logo.png" class="mb-10 h-7 w-28 md:w-28 md:h-8 mx-auto " alt="">
+                  </a>
+                  <form >
+                    <div class="grid grid-cols-2 gap-4">
+                      <div class="mt-4 w-44 md:w-44 " >
+                          <label for="fName" class="mb-3 block text-base font-medium text-black">
+                            nom
+                          </label>
+                          <input type="text" name="fName" id="fName" placeholder="First Name"
+                            class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                    </div>
+                      <div class="mt-4 w-44 md:w-72 pl-28" >
+                          <label for="lName" class="mb-3 block text-base font-medium text-black">
+                           prénom
+                          </label>
+                          <input type="text" name="lName" id="lName" placeholder="Last Name"
+                            class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                        </div>
+                     
+                    </div>
+                    <div class="mt-4 w-96">
+                      <label for="guest" class="mb-3 block text-base font-medium text-black">
+                        nombre des places
+                      </label>
+                      <input type="number" name="guest" id="guest" placeholder="5" min="0"
+                        class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                    </div>
+              
+                    <div class="grid grid-cols-2 gap-4">
+                      <div class="mt-4 w-44 md:w-44 " >
+                          <label for="date" class="mb-3 block text-base font-medium text-[#07074D]">
+                            date
+                          </label>
+                          <input type="date" name="date" id="date"
+                            class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                        </div>
+                      
+                        <div class="mt-4 w-44 md:w-72 pl-28" >
+                          <label for="time" class="mb-3 block text-base font-medium text-[#07074D]">
+                            Temps
+                          </label>
+                          <input type="time" name="time" id="time"
+                            class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                        </div>
+                      </div>
+                    
+              
+              <!--    <div class="mb-5">
+                      <label class="mb-3 block text-base font-medium text-[#07074D]">
+                        Are you coming to the event?
+                      </label>
+                      <div class="flex items-center space-x-6">
+                        <div class="flex items-center">
+                          <input type="radio" name="radio1" id="radioButton1" class="h-5 w-5" />
+                          <label for="radioButton1" class="pl-3 text-base font-medium text-[#07074D]">
+                            Yes
+                          </label>
+                        </div>
+                        <div class="flex items-center">
+                          <input type="radio" name="radio1" id="radioButton2" class="h-5 w-5" />
+                          <label for="radioButton2" class="pl-3 text-base font-medium text-[#07074D]">
+                            No
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+              -->  
+                   
+                    
+                      <button type="submit" style="background-color: #09650c;" class="block w-64 md:w-96 px-4 py-2 mt-8 text-sm font-bold font-serif leading-5 text-center text-white 
+                      transition-colors duration-150 bg-gray-900  border border-transparent rounded-lg active:bg-gray-600  
+                      hover:bg-gray-600  focus:outline-none focus:shadow-outline-gray" type="button" routerLink="/paiement">Réserver
+                  </button>
+              
+                  </form>
+                    
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

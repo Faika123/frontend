@@ -9,8 +9,6 @@ import { FooterComponent } from './footer/footer.component';
 import { ProfileComponent } from './profile/profile.component';
 import { CultureComponent } from './culture/culture.component';
 import { SanteComponent } from './sante/sante.component';
-import { SportComponent } from './sport/sport.component';
-import { EducationComponent } from './education/education.component';
 import { SocialComponent } from './social/social.component';
 import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component';
@@ -59,14 +57,7 @@ const routes: Routes = [
     path: 'sante', 
     component: SanteComponent
   },
-  { 
-    path: 'sport', 
-    component: SportComponent 
-  },
-  { 
-    path: 'education', 
-    component: EducationComponent 
-  },
+
   { 
     path: 'social', 
     component: SocialComponent 
@@ -84,7 +75,7 @@ const routes: Routes = [
     component: CategorieComponent
   },
   { 
-    path: 'payment', 
+    path: 'paiement', 
     component: PaymentComponent
   },
   { 

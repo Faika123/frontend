@@ -23,13 +23,12 @@ export class SigninComponent {
       },
       error: (error) => {
         console.error('login error:', error);
-        console.log('login failed. please check your credentials');
+        if (error.status === 0) {
+          console.log('Connection refused. Please make sure the server is running.');
+        } else {
+          console.log('Login failed. Please check your credentials.');
+        }
       }
     });
-  }
-
-  logout(): void {
-    localStorage.removeItem('loginToken');
-    this.router.navigate(['/login']);
   }
 }

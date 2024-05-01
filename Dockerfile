@@ -1,32 +1,29 @@
-# Use official Node.js runtime as a parent image
+# Utilise l'image Node.js officielle comme image parent
 FROM node:20.11.1 as build
 
-# Set the working directory
+# Définit le répertoire de travail
 WORKDIR /app
 
-# Copy package and package-look to the working directory
+# Copie le fichier package.json pour installer les dépendances
 COPY package*.json ./
 
-# install app dependencies
-Run npm install
+# Installe les dépendances de l'application
+RUN npm install
 
-# Install Angular CLI globally
-RUN npm install -g @angular/cli
+# Copie le reste des fichiers de l'application
+COPY . .
 
-# Add the source code to app
-COPY . . 
+# Exécute la commande de build de l'application Angular
+RUN npm run build --prod
 
+# Utilise une image Nginx plus légère pour servir l'application Angular
+FROM nginx:alpine
 
-# Build the Angular app
-RUN ng build
-
-# use a smaller production-ready image for serving the Angular app
-From nginx:alpine
-
-# Copy the Angular app build artifacts to the nginx public directory 
+# Copie les fichiers build de l'application Angular dans le répertoire de Nginx
 COPY --from=build /app/dist/faika /usr/share/nginx/html
 
-# start the nginx web server
+# Expose le port 80
+EXPOSE 80
+
+# Démarre le serveur Nginx
 CMD ["nginx", "-g", "daemon off;"]
-# Expose port 83
-EXPOSE 83

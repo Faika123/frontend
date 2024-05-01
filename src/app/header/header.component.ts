@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from '../authentification/auth.service';
+import { TokenStorageService } from 'src/app/services/token-service/token-storage.service';
+
 
 @Component({
   selector: 'app-header',
@@ -8,34 +8,33 @@ import { AuthService } from '../authentification/auth.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  private roles: string[] = [];
   isLoggedIn = false;
-  nom: string | undefined;
+  showAdminBoard = false;
+  showModeratorBoard = false;
+  nom?: string;
+  photo_url?: string;
   isOpen = false;
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private tokenStorageService: TokenStorageService) { }
 
   ngOnInit(): void {
-    this.authService.isLoggedIn.subscribe((loggedIn) => {
-      this.isLoggedIn = loggedIn;
-      if (loggedIn) {
-        // Récupérer le nom d'utilisateur depuis le service d'authentification
-        this.nom = this.authService.getUsername();
-      }
-    });
-  }
+    this.isLoggedIn = !!this.tokenStorageService.getToken();
 
-  toggleDropdown() {
-    this.isOpen = !this.isOpen;
+    if (this.isLoggedIn) {
+      const user = this.tokenStorageService.getUser();
+      this.roles = user.roles;
+
+      this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
+      this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
+
+      this.nom = user.nom;
+      this.photo_url = user.photo_url;
+    }
   }
 
   logout(): void {
-    // Appeler la méthode logout du service d'authentification
-    this.authService.logout();
-  }
-
-  // Méthode pour gérer la connexion de l'utilisateur
-  login(): void {
-    // Redirigez l'utilisateur vers la page de connexion
-    this.router.navigate(['/signin']);
+    this.tokenStorageService.signOut();
+    window.location.reload();
   }
 }
