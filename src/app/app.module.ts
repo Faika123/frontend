@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 
 import { AppComponent } from './app.component';
@@ -22,6 +22,8 @@ import { AboutComponent } from './about/about.component';
 import { CategorieComponent } from './categorie/categorie.component';
 import { PaymentComponent } from './payment/payment.component';
 import { SiderbarCategorieComponent } from './siderbar-categorie/siderbar-categorie.component';
+import { AuthService } from './services/authentification/auth.service';
+import { AuthGuard } from './services/authguard/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,7 @@ import { SiderbarCategorieComponent } from './siderbar-categorie/siderbar-catego
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,40 +1,25 @@
-import { Component, OnInit } from '@angular/core';
-import { TokenStorageService } from 'src/app/services/token-service/token-storage.service';
-
+import { Component } from '@angular/core';
+import { AuthService } from '../services/authentification/auth.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
-  private roles: string[] = [];
+export class HeaderComponent {
   isLoggedIn = false;
-  showAdminBoard = false;
-  showModeratorBoard = false;
-  nom?: string;
-  photo_url?: string;
-  isOpen = false;
+  nom = '';
 
-  constructor(private tokenStorageService: TokenStorageService) { }
-
-  ngOnInit(): void {
-    this.isLoggedIn = !!this.tokenStorageService.getToken();
-
+  constructor(private authService: AuthService) {
+    this.isLoggedIn = this.authService.isLoggedIn();
     if (this.isLoggedIn) {
-      const user = this.tokenStorageService.getUser();
-      this.roles = user.roles;
-
-      this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
-      this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
-
-      this.nom = user.nom;
-      this.photo_url = user.photo_url;
+      const token = this.authService.getToken();
+      // Extraire le nom d'utilisateur à partir du token (à définir selon votre logique)
+      this.nom = 'Nom Utilisateur';
     }
   }
 
   logout(): void {
-    this.tokenStorageService.signOut();
-    window.location.reload();
+    this.authService.logout();
   }
 }

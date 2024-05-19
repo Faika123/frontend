@@ -1,37 +1,37 @@
+// ProfileComponent
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Router, ActivatedRoute } from '@angular/router';
+import { AuthService } from '../services/authentification/auth.service';
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  User = { id: 0, nom: '', prenom: '', email: '', mot_de_passe: '', photo_url: '' }; 
+  currentUser: any;
 
-  private baseUrl = 'http://localhost:3005'; 
-
-  constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) {} 
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      const id = +params['id'];
-      this.getUserById(id);
-    });
+    if (this.authService.isLoggedIn()) {
+      const token = this.authService.getToken();
+      if (token) {
+        this.authService.getUserFromToken(token).subscribe({
+          next: (user: any) => {
+            this.currentUser = user;
+          },
+          error: (error: any) => {
+            console.error('Error fetching user data:', error);
+          }
+        });
+      } else {
+        console.error('Token is null.');
+      }
+    }
   }
+}
 
-  getUserById(id: number): void {
-    const url = `${this.baseUrl}/${id}/listerbyid`;
-    this.http.get<any>(url)
-      .subscribe(
-        response => {
-          this.User = response;
-        },
-        error => {
-          console.error(error); 
-        }
-      );
-  }
+
 
   /*onSubmit(): void {
     const url = `${this.baseUrl}/${this.User.id}/modifier`;
@@ -47,4 +47,4 @@ export class ProfileComponent implements OnInit {
         }
       );
   }*/
-}
+

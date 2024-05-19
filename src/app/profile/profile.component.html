@@ -3,8 +3,8 @@
     <div class="top h-64 w-full bg-blue-600 overflow-hidden relative" >
       <img src="https://images.unsplash.com/photo-1503264116251-35a269479413?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" alt="" class="bg w-full h-full object-cover object-center absolute z-0">
       <div class="flex flex-col justify-center items-center relative h-full bg-black bg-opacity-50 text-white">
-        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" class="h-24 w-24 object-cover rounded-full">
-        <h1 class="text-2xl font-semibold">Antonia Howell</h1>
+        <img [src]="currentUser.photo_url" alt="Photo"> <!-- Utilisez la propriété currentUser.photo_url pour afficher la photo de profil -->
+        <h1 class="text-2xl font-semibold">{{ currentUser.nom }} {{ currentUser.prenom }}</h1> <!-- Affichez le nom et le prénom de l'utilisateur -->
         <!--<h4 class="text-sm font-semibold">Joined Since '19</h4>-->
       </div>
     </div>
@@ -22,11 +22,11 @@
             <div class="grid grid-cols-2 gap-4">
               <div>
                   <label for="firstName" class="block text-sm font-bold font-serif text-gray-700">Prénom</label>
-                  <input type="text" placeholder="firstName" name="firstName" class="mt-1 p-2 w-full border rounded-md">
+                  <input type="text" placeholder="firstName" name="prenom" [(ngModel)]="currentUser.prenom" class="mt-1 p-2 w-full border rounded-md" required>
               </div>
               <div>
                   <label for="lastName" class="block text-sm font-bold font-serif text-gray-700">Nom</label>
-                  <input type="text" placeholder="lastName" name="lastName" class="mt-1 p-2 w-full border rounded-md">
+                  <input type="text" placeholder="lastName" name="nom" [(ngModel)]="currentUser.nom" class="mt-1 p-2 w-full border rounded-md" required>
               </div>
           </div>
 
@@ -34,24 +34,24 @@
           <div class="grid grid-cols-2 gap-4">
           <div class="mt-4">
               <label for="email" class="block text-sm font-bold font-serif text-gray-700">Adresse email</label>
-              <input type="email" placeholder="email" name="email" class="mt-1 p-2 w-full border rounded-md">
+              <input type="email" placeholder="email" name="email" [(ngModel)]="currentUser.email" class="mt-1 p-2 w-full border rounded-md" required>
           </div>
           <div class="mt-4">
               <label for="telephone" class="block text-sm font-bold font-serif text-gray-700">Téléphone</label>
-              <input type="text" placeholder="Téléphone" name="telephone" class="mt-1 p-2 w-full border rounded-md">
+              <input type="text" placeholder="Téléphone" name="tel" [(ngModel)]="currentUser.tel" class="mt-1 p-2 w-full border rounded-md" required>
           </div>
           </div>
           <div class="grid grid-cols-2 gap-4">
           <!-- Mot de passe -->
           <div class="mt-4">
               <label for="password" class="block text-sm font-bold font-serif text-gray-700">Mot de passe</label>
-              <input type="password" placeholder="password" name="password" class="mt-1 p-2 w-full border rounded-md">
+              <input type="password" placeholder="password" name="mot_de_passe" [(ngModel)]="currentUser.mot_de_passe" class="mt-1 p-2 w-full border rounded-md">
           </div>
           <!--  confirme Mot de passe -->
 
           <div class="mt-4">
               <label for="password" class="block text-sm font-bold font-serif text-gray-700">Confirmer Mot de passe</label>
-              <input type="password" placeholder="Confirmer password" name="password" class="mt-1 p-2 w-full border rounded-md">
+              <input type="password" placeholder="Confirmer password" name="mot_de_passe" [(ngModel)]="currentUser.mot_de_passe" class="mt-1 p-2 w-full border rounded-md">
           </div>
           </div>
         </div>
@@ -59,7 +59,7 @@
           <div class="mt-6">
               <button type="submit" class="w-72 p-2 ml-48 bg-gray-700 font-bold font-serif text-white rounded-md hover:bg-green-900">Mettre à jour mes informations</button>
           </div>
-          <a href="#" class="text-red-600 font-semibold text-md">Supprimer mon compte</a>
+          <a href="#" class="text-red-600 font-semibold text-md" type="button">Supprimer mon compte</a>
            
   
   

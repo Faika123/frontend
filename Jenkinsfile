@@ -42,6 +42,18 @@ pipeline {
             }
         
         }
+
+         /* stage('Deploy Docker image') {
+            steps {
+                script {
+                    // Push Docker image to Docker Hub
+                     docker.withRegistry('https://index.docker.io/v2/', '10') {
+                        // Push both the latest and tagged images
+                        docker.image('faika/frontend:latest').push()
+                    }
+                }
+            }
+        }*/
     }
 
 }
