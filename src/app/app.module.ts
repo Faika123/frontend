@@ -14,14 +14,12 @@ import { SignupComponent } from './signup/signup.component';
 import { ReservationComponent } from './reservation/reservation.component';
 import { ProfileComponent } from './profile/profile.component';
 import { FooterComponent } from './footer/footer.component';
-import { CultureComponent } from './culture/culture.component';
 import { SocialComponent } from './social/social.component';
 import { SanteComponent } from './sante/sante.component';
 import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component';
 import { CategorieComponent } from './categorie/categorie.component';
 import { PaymentComponent } from './payment/payment.component';
-import { SiderbarCategorieComponent } from './siderbar-categorie/siderbar-categorie.component';
 import { AuthService } from './services/authentification/auth.service';
 import { AuthGuard } from './services/authguard/auth-guard.service';
 
@@ -35,14 +33,13 @@ import { AuthGuard } from './services/authguard/auth-guard.service';
     ReservationComponent,
     ProfileComponent,
     FooterComponent,
-    CultureComponent,
     SocialComponent,
     SanteComponent,
     ContactComponent,
     AboutComponent,
     CategorieComponent,
     PaymentComponent,
-    SiderbarCategorieComponent
+   
   ],
   imports: [
     BrowserModule,

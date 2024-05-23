@@ -1,38 +1,46 @@
 <app-header></app-header>
-<app-siderbar-categorie (categorieSelected)="onCategorieSelected($event)"></app-siderbar-categorie>
 
-<div x-data="{ cartOpen: false , isOpen: false }" class="bg-white">
-
-  <div class="mt-full">
-    <main class="my-8 pl-38 justify-between ">
-      <div class="container mx-auto px-6">
-        <!--  <h3 class="text-gray-900 text-2xl text-center font-medium mb-20">les types des évènements</h3>-->
-
-        <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-16">
-          <!-- Adjusted the ngFor loop to generate cards in a grid -->
-          <div *ngFor="let event of evenements" class="custom-card-width bg-white shadow-md rounded-lg dark:bg-gray-800 dark:border-gray-700 flex flex-col">
-            <a href="#">
-              <img class="rounded-t-lg p-8 hover:bg-gray-100 object-cover h-64 w-full" [src]="event.photo_url" alt="Photo">
-            </a>
-        
-            <div class="flex-grow px-5 pb-5">
-              <a href="#">
-                <h3 class="text-gray-900 font-semibold text-xl tracking-tight dark:text-white">{{ event.titre }}</h3>
-                <p class="leading-relaxed mb-3 " style="height: 80px; overflow: hidden;">{{ event.description }}</p>
-              </a>
-              <div class="flex items-center mt-2.5 mb-5">
-                <!-- Rating stars -->
-                <!-- Your rating stars SVGs here -->
-              </div>
-              <div class="flex justify-between items-end">
-                <span class="text-xl font-bold text-gray-900 dark:text-white">{{ event.prix }} dt</span>
-                <a href="" class="text-white bg-green-900 hover:bg-green-700 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-900 dark:hover:bg-green-700 dark:focus:ring-green-800" type="button" routerLink="/reservation">Réserver</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-      </div>
-    </main>
+<div class="flex flex-wrap justify-center gap-4 mt-10">
+	<button *ngFor="let category of categories" (click)="getEventsByCategory(category.id)"
+	  class="font-bold font-serif py-3 px-10 rounded-full shadow-md hover:bg-gray-100">
+	  {{ category.nom }}
+	</button>
   </div>
-</div>
+
+  <div x-data="{ cartOpen: false , isOpen: false }" class="bg-white">
+
+	<div class="mt-full">
+	  <main class="my-8 pl-38 justify-between ">
+		<div class="container mx-auto px-6">
+		  <!--  <h3 class="text-gray-900 text-2xl text-center font-medium mb-20">les types des évènements</h3>-->
+  
+		  <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-16">
+			<!-- Adjusted the ngFor loop to generate cards in a grid -->
+			<div *ngFor="let event of evenements" class="custom-card-width bg-white shadow-md rounded-lg dark:bg-gray-800 dark:border-gray-700 flex flex-col">
+			  <a href="#">
+				<img class="rounded-t-lg p-8 hover:bg-gray-100 object-cover h-64 w-full" [src]="event.photo_url" alt="Photo">
+			  </a>
+		  
+			  <div class="flex-grow px-5 pb-5">
+				<a href="#">
+				  <h3 class="text-gray-900 font-semibold text-xl tracking-tight dark:text-white text-center mb-5">{{ event.titre }}</h3>
+          <h6 class="text-green-900 font-semibold text-sm tracking-tight dark:text-white">{{ event.lieu }}</h6>
+
+				  <p class="leading-relaxed mb-3 " style="height: 80px; overflow: hidden;">{{ event.description }}</p>
+				</a>
+				<div class="flex items-center mt-2.5 mb-5">
+				  <!-- Rating stars -->
+				  <!-- Your rating stars SVGs here -->
+				</div>
+				<div class="flex justify-between items-end">
+				  <span class="text-xl font-bold text-gray-900 dark:text-white">{{ event.prix }} dt</span>
+				  <a href="" class="text-white bg-green-900 hover:bg-green-700 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-900 dark:hover:bg-green-700 dark:focus:ring-green-800" type="button" routerLink="/reservation">Réserver</a>
+				</div>
+			  </div>
+			</div>
+		  </div>
+		  
+		</div>
+	  </main>
+	</div>
+  </div>

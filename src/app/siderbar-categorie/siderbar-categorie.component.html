@@ -1,8 +1,0 @@
-<div class="flex flex-wrap justify-center gap-4 mt-10">
-	<a *ngFor="let categorie of categories; let isFirst = first" (click)="onSelectCategorie(categorie)"
-	  [ngClass]="{'bg-green-900 text-white': isFirst, 'bg-transparent text-gray-800': !isFirst}"
-	  class="font-bold font-serif py-3 px-10 rounded-full shadow-md hover:bg-gray-100">
-	  {{ categorie.nom }}
-	</a>
-  </div>
-  

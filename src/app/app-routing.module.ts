@@ -7,14 +7,12 @@ import { SignupComponent } from './signup/signup.component';
 import { ReservationComponent } from './reservation/reservation.component';
 import { FooterComponent } from './footer/footer.component';
 import { ProfileComponent } from './profile/profile.component';
-import { CultureComponent } from './culture/culture.component';
 import { SanteComponent } from './sante/sante.component';
 import { SocialComponent } from './social/social.component';
 import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component';
 import { CategorieComponent } from './categorie/categorie.component';
 import { PaymentComponent } from './payment/payment.component';
-import { SiderbarCategorieComponent } from './siderbar-categorie/siderbar-categorie.component';
 
 
 
@@ -49,10 +47,7 @@ const routes: Routes = [
     
 
   },
-  { 
-    path: 'culture', 
-    component: CultureComponent
-  },
+
   { 
     path: 'sante', 
     component: SanteComponent
@@ -78,10 +73,7 @@ const routes: Routes = [
     path: 'paiement', 
     component: PaymentComponent
   },
-  { 
-    path: 'siderbar-categorie', 
-    component: SiderbarCategorieComponent
-  },
+
 ];
 
 

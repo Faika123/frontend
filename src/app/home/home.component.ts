@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
@@ -17,8 +17,6 @@ export class HomeComponent {
   ngOnInit(): void {
     
   }
-
-
 
   rechercherevenement(): void {
     let queryParams: any = {};
@@ -41,9 +39,11 @@ export class HomeComponent {
     this.http.get<any[]>(url).subscribe(data => {
       // Filtrer les evenement en fonction des critères de recherche
       this.evenement = data.filter(user => {
-          return (!this.Params.titre || user.titre.toLowerCase().includes(this.Params.titre.toLowerCase()));
-                
+        return (!this.Params.titre || user.titre.toLowerCase().includes(this.Params.titre.toLowerCase()));
       });
+
+      // Rediriger vers la page de liste-evenements avec les paramètres de requête
+      this.router.navigate(['/categorie'], { queryParams });
     });
-}
+  }
 }

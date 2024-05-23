@@ -8,31 +8,41 @@ import { Router } from '@angular/router';
   styleUrls: ['./categorie.component.css']
 })
 export class CategorieComponent implements OnInit {
+  categories: any[] = [];
   evenements: any[] = [];
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    // Afficher tous les événements par défaut lors du chargement de la page
-    this.listerEvenements();
+    this.listercategories();
   }
 
-  listerEvenements(): void {
-    this.http.get<any[]>('http://localhost:3006/lister').subscribe(
+  listercategories(): void {
+    this.http.get<any[]>('http://localhost:3006/listercategorie').subscribe(
       data => {
-        this.evenements = data;
+        this.categories = data;
       },
       error => {
-        console.error('Une erreur s\'est produite lors de la récupération des événements :', error);
+        console.error('Une erreur s\'est produite lors de la récupération des catégories :', error);
       }
     );
   }
 
-  onCategorieSelected(id: number) {
-    this.http.get<any[]>(`http://localhost:3006/categorie/${id}/evenement`).subscribe(data => {
-      this.evenements = data;
-    });
+  getEventsByCategory(categoryId: any) {
+    const url = `http://localhost:3006/categorie/${categoryId}/evenement`;
+
+    this.http.get(url).subscribe(
+      (res: any) => {
+        this.evenements = res;
+        console.log('Liste des événements par catégorie :', this.evenements);
+      },
+      (error: any) => {
+        console.error('Erreur lors de la récupération des événements par catégorie :', error);
+      }
+    );
   }
+
+
   
   
 }

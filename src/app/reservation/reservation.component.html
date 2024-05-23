@@ -2,55 +2,54 @@
 
 <div class="flex items-center justify-center min-h-screen bg-gray-50">
   <div class="w-96 mx-auto md:flex-1 md:h-full md:max-w-xl md:mx-auto bg-white rounded-lg shadow-xl mb-20">
-      <div class="flex flex-col md:flex-row ml-10 md:ml-16 ">
-          <div class="flex items-center justify-center p-6 sm:p-12 md:w-1/2 ">
-              <div class="w-full mt-4 ">
-                 <!-- <a href="#" class="flex items-center mb-4 font-medium text-gray-900 title-font md:mb-0 justify-center">
-                      <img src="/assets/img/logo.png" class="mb-10 h-7 w-28 md:w-28 md:h-8 mx-auto " alt="">
-                  </a>-->
-                  <h1 class="mb-6 ml-14 text-2xl font-bold font-serif md:ml-28 text-black w-96 mr-4">Réservation</h1>
+    <div class="flex flex-col md:flex-row ml-10 md:ml-16 ">
+      <div class="flex items-center justify-center p-6 sm:p-12 md:w-1/2 ">
+        <div class="w-full mt-4 ">
+          <h1 class="mb-6 ml-14 text-2xl font-bold font-serif md:ml-28 text-black w-96 mr-4">Réservation</h1>
 
-                  <form>
-                    <div class="grid grid-cols-2 gap-4">
-                      <div class="mt-4 w-44 md:w-44 " >
-                          <label for="fName" class="mb-3 block text-base font-medium text-black">
-                            nom
-                          </label>
-                          <input type="text" name="fName" id="fName" placeholder="First Name"
-                            class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
-                    </div>
-                      <div class="mt-4 w-44 md:w-72 pl-28" >
-                          <label for="lName" class="mb-3 block text-base font-medium text-black">
-                           prénom
-                          </label>
-                          <input type="text" name="lName" id="lName" placeholder="Last Name"
-                            class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
-                        </div>
-                     
-                    </div>
-                    <div class="mt-4 w-96">
-                      <label for="guest" class="mb-3 block text-base font-medium text-black">
-                        nombre des places
-                      </label>
-                      <input type="number" name="guest" id="guest" placeholder="5" min="0"
-                        class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
-                    </div>
-              
-                    <div class="mt-4 w-96">
-                      <label for="guest" class="mb-3 block text-base font-medium text-black">date de réservation</label>
-                          <input  
-                                 type="datetime-local"  name="guest"
-                                 class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                 placeholder="Date de réservation">  
-                    </div>
-                      <button type="submit" style="background-color: #09650c;" class="block w-64 md:w-96 px-4 py-2 mt-8 text-sm font-bold font-serif leading-5 text-center text-white 
-                      transition-colors duration-150 bg-gray-900  border border-transparent rounded-lg active:bg-gray-600  
-                      hover:bg-gray-600  focus:outline-none focus:shadow-outline-gray" type="button" routerLink="/paiement">Réserver
-                  </button>
-                  </form>
-                    
-              </div>
-          </div>
+          <form (ngSubmit)="submitReservation()">
+            <div class="mt-4 w-96">
+              <label for="guest" class="mb-3 block text-base font-medium text-black">
+                nombre des places
+              </label>
+              <input type="number" name="nbr_place" id="nbr_place" placeholder="5" min="0"
+                class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-black focus:shadow-md"
+                [(ngModel)]="reservation.nbr_place" />
+            </div>
+            <div class="mt-4 w-96">
+              <label for="type_ticket" class="mb-3 block text-base font-medium text-black">
+                type de ticket
+              </label>
+              <select name="type_ticket" id="type_ticket" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-black focus:shadow-md"
+                [(ngModel)]="reservation.type_ticket" required>
+                <option value="VIP">VIP</option>
+                <option value="Ordinaire">Ordinaire</option>
+                <option value="Premium">Premium</option>
+              </select>
+            </div>
+            <div class="mt-4 w-96">
+              <label for="date_reservation" class="mb-3 block text-base font-medium text-black">date de réservation</label>
+              <input type="datetime-local" name="date_reservation" id="date_reservation"
+                class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-black focus:shadow-md"
+                placeholder="Date de réservation" [(ngModel)]="reservation.date_reservation" required>
+            </div>
+            <div class="mt-4 w-96">
+              <label for="evenement_id" class="mb-3 block text-base font-medium text-black">
+                Listes des évènements
+              </label>
+              <select name="evenement_id" id="evenement_id"
+                class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-black focus:shadow-md"
+                [(ngModel)]="reservation.evenement_id" required>
+                <option *ngFor="let event of evenements" [value]="event.id">{{ event.titre }}</option>
+              </select>
+            </div>
+            <button type="submit"
+              class="block w-64 md:w-96 px-4 py-2 mt-8 text-sm font-bold font-serif leading-5 text-center text-white transition-colors duration-150 bg-green-900 border border-transparent rounded-lg active:bg-gray-600 hover:bg-green-600 focus:outline-none focus:shadow-outline-gray"
+              >Réserver
+            </button>
+          </form>
+        </div>
       </div>
+    </div>
   </div>
 </div>
