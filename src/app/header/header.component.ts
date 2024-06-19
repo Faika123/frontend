@@ -1,25 +1,35 @@
-import { Component } from '@angular/core';
-import { AuthService } from '../services/authentification/auth.service';
+import { Component, OnInit } from '@angular/core';
+import { TokenStorageService } from '../services/token-service/token-storage.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   isLoggedIn = false;
-  nom = '';
+  email?: string;
+  profileImage?: string;
+  isDropdownOpen = false;  // Add this line to define the property
 
-  constructor(private authService: AuthService) {
-    this.isLoggedIn = this.authService.isLoggedIn();
+  constructor(private tokenStorageService: TokenStorageService) { }
+
+  ngOnInit(): void {
+    this.isLoggedIn = !!this.tokenStorageService.getToken();
+
     if (this.isLoggedIn) {
-      const token = this.authService.getToken();
-      // Extraire le nom d'utilisateur à partir du token (à définir selon votre logique)
-      this.nom = 'Nom Utilisateur';
+      const user = this.tokenStorageService.getUser();
+      this.email = user.email;
+      this.profileImage = user.profile_image;
     }
   }
 
+  toggleDropdown(): void {
+    this.isDropdownOpen = !this.isDropdownOpen;  // Add this method to toggle the dropdown state
+  }
+
   logout(): void {
-    this.authService.logout();
+    this.tokenStorageService.signOut();
+    window.location.reload();
   }
 }

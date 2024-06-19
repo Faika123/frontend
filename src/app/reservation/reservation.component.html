@@ -1,3 +1,4 @@
+
 <app-header></app-header>
 
 <div class="flex items-center justify-center min-h-screen bg-gray-50">
@@ -7,21 +8,21 @@
         <div class="w-full mt-4 ">
           <h1 class="mb-6 ml-14 text-2xl font-bold font-serif md:ml-28 text-black w-96 mr-4">Réservation</h1>
 
-          <form (ngSubmit)="submitReservation()">
+          <form form [formGroup]="reservationForm" (ngSubmit)="onSubmit()">
             <div class="mt-4 w-96">
               <label for="guest" class="mb-3 block text-base font-medium text-black">
                 nombre des places
               </label>
               <input type="number" name="nbr_place" id="nbr_place" placeholder="5" min="0"
                 class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-black focus:shadow-md"
-                [(ngModel)]="reservation.nbr_place" />
+                formControlName="nbr_place" />
             </div>
             <div class="mt-4 w-96">
               <label for="type_ticket" class="mb-3 block text-base font-medium text-black">
                 type de ticket
               </label>
               <select name="type_ticket" id="type_ticket" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-black focus:shadow-md"
-                [(ngModel)]="reservation.type_ticket" required>
+              formControlName="type_ticket" required>
                 <option value="VIP">VIP</option>
                 <option value="Ordinaire">Ordinaire</option>
                 <option value="Premium">Premium</option>
@@ -29,9 +30,9 @@
             </div>
             <div class="mt-4 w-96">
               <label for="date_reservation" class="mb-3 block text-base font-medium text-black">date de réservation</label>
-              <input type="datetime-local" name="date_reservation" id="date_reservation"
+              <input type="date" name="date_reservation" id="date_reservation"
                 class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-black focus:shadow-md"
-                placeholder="Date de réservation" [(ngModel)]="reservation.date_reservation" required>
+                placeholder="Date de réservation" formControlName="date_reservation" required>
             </div>
             <div class="mt-4 w-96">
               <label for="evenement_id" class="mb-3 block text-base font-medium text-black">
@@ -39,12 +40,12 @@
               </label>
               <select name="evenement_id" id="evenement_id"
                 class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-black focus:shadow-md"
-                [(ngModel)]="reservation.evenement_id" required>
+                formControlName="evenement_id" required>
                 <option *ngFor="let event of evenements" [value]="event.id">{{ event.titre }}</option>
               </select>
             </div>
             <button type="submit"
-              class="block w-64 md:w-96 px-4 py-2 mt-8 text-sm font-bold font-serif leading-5 text-center text-white transition-colors duration-150 bg-green-900 border border-transparent rounded-lg active:bg-gray-600 hover:bg-green-600 focus:outline-none focus:shadow-outline-gray"
+              class="block w-64 md:w-96 px-4 py-2 mt-8 text-sm font-bold font-serif leading-5 text-center text-white transition-colors duration-150 bg-gray-800 border border-transparent rounded-lg active:bg-gray-600 hover:bg-green-600 focus:outline-none focus:shadow-outline-gray"
               >Réserver
             </button>
           </form>
@@ -53,3 +54,4 @@
     </div>
   </div>
 </div>
+

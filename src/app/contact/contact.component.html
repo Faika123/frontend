@@ -1,5 +1,5 @@
 <app-header></app-header>
-<body class="bg-white ">
+<body class="bg-white mt-20">
     <div
       class="max-w-screen-lg mt-8 px-8 grid gap-8 grid-cols-1 md:grid-cols-2 md:px-12 lg:px-16 xl:px-32 py-16 mx-auto bg-gray-100 text-gray-900 rounded-lg shadow-xl">
       <div class="flex flex-col justify-between">
@@ -507,24 +507,18 @@
       </div>
       <div class="ml-10">
         <div>
-          <span class="uppercase text-sm text-gray-600 font-bold">Nom</span>
-          <input class="w-full shadow-lg text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-            type="text" placeholder="nom">
+          <span class="uppercase text-sm text-gray-600 font-bold">Email</span>
+          <input [(ngModel)]="contact.email" class="w-full shadow-lg text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
+            type="text" placeholder="email">
         </div>
-        <div>
-            <span class="uppercase text-sm text-gray-600 font-bold">Email</span>
-            <input class="w-full shadow-lg text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-              type="text" placeholder="email">
-          </div>
-      
         <div class="mt-4">
           <span class="uppercase text-sm text-gray-600 font-bold">Message</span>
           <textarea
-            class="w-full h-32 shadow-lg text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"></textarea>
+          [(ngModel)]="contact.message" class="w-full h-32 shadow-lg text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"></textarea>
         </div>
         <div class="mt-8">
-          <button style="background-color: #045307;"
-            class="uppercase text-sm font-bold tracking-wide bg-gray-400 text-gray-100 p-3 rounded-lg w-full focus:outline-none focus:shadow-outline">
+          <button style="background-color: #040931;"  type="submit"
+          (click)="onSubmit()"  class="uppercase text-sm font-bold tracking-wide bg-gray-400 text-gray-100 p-3 rounded-lg w-full focus:outline-none focus:shadow-outline">
             Envoyer 
           </button>
         </div>

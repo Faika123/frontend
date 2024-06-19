@@ -15,12 +15,24 @@ export class CategorieComponent implements OnInit {
 
   ngOnInit(): void {
     this.listercategories();
+    this.listerEvent();
+
   }
 
   listercategories(): void {
     this.http.get<any[]>('http://localhost:3006/listercategorie').subscribe(
       data => {
         this.categories = data;
+      },
+      error => {
+        console.error('Une erreur s\'est produite lors de la récupération des catégories :', error);
+      }
+    );
+  }
+  listerEvent(): void {
+    this.http.get<any[]>('http://localhost:3006/lister').subscribe(
+      data => {
+        this.evenements = data;
       },
       error => {
         console.error('Une erreur s\'est produite lors de la récupération des catégories :', error);

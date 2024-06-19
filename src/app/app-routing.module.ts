@@ -13,6 +13,7 @@ import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component';
 import { CategorieComponent } from './categorie/categorie.component';
 import { PaymentComponent } from './payment/payment.component';
+import { AuthGuard } from './services/authguard/auth-guard.service';
 
 
 
@@ -35,7 +36,7 @@ const routes: Routes = [
   },
   { 
     path: 'reservation', 
-    component: ReservationComponent 
+    component: ReservationComponent, canActivate: [AuthGuard]
   },
   { 
     path: 'footer', 
@@ -44,8 +45,6 @@ const routes: Routes = [
   { 
     path: 'profile', 
     component: ProfileComponent,  
-    
-
   },
 
   { 

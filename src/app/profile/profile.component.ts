@@ -1,5 +1,5 @@
-// ProfileComponent
 import { Component, OnInit } from '@angular/core';
+import { TokenStorageService } from '../services/token-service/token-storage.service';
 import { AuthService } from '../services/authentification/auth.service';
 
 @Component({
@@ -7,44 +7,14 @@ import { AuthService } from '../services/authentification/auth.service';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit{
+  isOpen = false;
   currentUser: any;
 
-  constructor(private authService: AuthService) { }
+
+  constructor(private authService: AuthService, private tokenStorage: TokenStorageService) { }
 
   ngOnInit(): void {
-    if (this.authService.isLoggedIn()) {
-      const token = this.authService.getToken();
-      if (token) {
-        this.authService.getUserFromToken(token).subscribe({
-          next: (user: any) => {
-            this.currentUser = user;
-          },
-          error: (error: any) => {
-            console.error('Error fetching user data:', error);
-          }
-        });
-      } else {
-        console.error('Token is null.');
-      }
-    }
+    this.currentUser = this.tokenStorage.getUser();
   }
 }
-
-
-
-  /*onSubmit(): void {
-    const url = `${this.baseUrl}/${this.User.id}/modifier`;
-    this.http.put(url, this.User)
-      .subscribe(
-        response => {
-          console.log('utilisateur modifiée avec succès.'); 
-          this.router.navigateByUrl('/profile');
-
-        },
-        error => {
-          console.error(error); 
-        }
-      );
-  }*/
-

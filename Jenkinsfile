@@ -23,12 +23,11 @@ pipeline {
             }
         }
 
-        stage('Build & rename Docker Image') {
+        stage('Build & Rename Docker Image') {
             steps {
                 script {
-                    // Construire l'image Docker
-                    bat "docker build -t frontend:latest ."
-                    bat "docker tag frontend:latest faika/frontend:latest"
+                    bat "docker build -t application6:latest ."
+                    bat "docker tag application6:latest faika/application6:latest"
                 }
             }
         }
@@ -37,31 +36,39 @@ pipeline {
             steps {
                 script {
                     // Exécuter le conteneur Docker en utilisant l'image construite
-                    bat "docker run -d -p 8333:80 --name frontend_container_latest faika/frontend:latest"
+                    bat "docker run -d -p 8337:80 --name application6_container_latest faika/application6:latest"
                 }
             }
         
         }
-        
 
-  stage('SonarQube Analysis') {
-    def scannerHome = tool 'SCANNER';
-    withSonarQubeEnv() {
-      sh "${scannerHome}/bin/sonar-scanner"
-    }
-  }
-
-         /* stage('Deploy Docker image') {
+        stage('Publish Docker Image') {
             steps {
                 script {
-                    // Push Docker image to Docker Hub
-                     docker.withRegistry('https://index.docker.io/v2/', '10') {
-                        // Push both the latest and tagged images
-                        docker.image('faika/frontend:latest').push()
+                    withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'DOCKERHUB_USERNAME', passwordVariable: 'DOCKERHUB_PASSWORD')]) {
+                        bat 'docker login -u %DOCKERHUB_USERNAME% -p %DOCKERHUB_PASSWORD%'
+                        bat 'docker tag faika/application6:latest faika/application6:%BUILD_ID%'
+                        bat 'docker push faika/application6:%BUILD_ID%'
+                        bat 'docker push faika/application6:latest'
                     }
                 }
             }
-        }*/
+        }
+        stage('kubernetes Deployment') {
+            steps {
+                script {
+                   bat 'kubectl apply -f frontend-deployment.yaml'
+                   bat 'kubectl apply -f frontend-service.yaml' 
+                }
+            }
+        }
     }
-
+    post {
+        success {
+            echo 'Build succeeded!'
+        }
+        failure {
+            echo 'Build failed!'
+        }
+    }
 }

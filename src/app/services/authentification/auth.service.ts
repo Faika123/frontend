@@ -1,32 +1,36 @@
-// AuthService
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+const AUTH_API = 'http://localhost:5000/authService/';
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(private http: HttpClient) {}
+ 
+  constructor(private http: HttpClient) { }
 
-  isLoggedIn(): boolean {
-    // Vérifier si l'utilisateur est connecté en fonction de votre logique
-    return !!sessionStorage.getItem('loginToken');
+  login(email: string, mot_de_passe: string): Observable<any> {
+    return this.http.post(AUTH_API + 'login', {
+      email,
+      mot_de_passe
+    }, httpOptions);
   }
 
-  getToken(): string | null {
-    return sessionStorage.getItem('loginToken');
+  register(username: string, email: string, password: string, address: string, phone: string, profile_image: string): Observable<any> {
+    return this.http.post(AUTH_API + 'signup', {
+      username,
+      email,
+      password,
+      address,
+      phone,
+      profile_image
+    }, httpOptions);
   }
-
-  getUserFromToken(token: string): any {
-    // Implémentez la logique pour extraire les informations de l'utilisateur à partir du token
-    // Cette fonction peut utiliser une bibliothèque de décodage JWT ou votre propre logique
-    // Pour cet exemple, nous renvoyons simplement un objet vide
-    return this.http.get<any>('http://localhost:3005/${id}');
-  }
-
-  logout(): void {
-    // Supprimer le token de la session lors de la déconnexion
-    sessionStorage.removeItem('loginToken');
-    // Vous pouvez également rediriger l'utilisateur vers la page de connexion
-  }
+  
 }
