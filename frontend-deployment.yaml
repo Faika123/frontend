@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: faika/applications:latest
+        image: faika/reservation:latest
         ports:
         - containerPort: 80
         env:

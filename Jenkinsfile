@@ -36,7 +36,7 @@ pipeline {
             steps {
                 script {
                     // Exécuter le conteneur Docker en utilisant l'image construite
-                    bat "docker run -d -p s339:s0 --name applications_container_latest faika/applications:latest"
+                    bat "docker run -d -p 8339:80 --name applications_container_latest faika/applications:latest"
                 }
             }
         
