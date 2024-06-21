@@ -26,30 +26,21 @@ pipeline {
         stage('Build & Rename Docker Image') {
             steps {
                 script {
-                    bat "docker build -t applications:latest ."
-                    bat "docker tag applications:latest faika/applications:latest"
+                    bat "docker build -t applications1:latest ."
+                    bat "docker tag applications1:latest faika/applications1:latest"
                 }
             }
         }
 
-        stage('Run Docker Container') {
-            steps {
-                script {
-                    // Exécuter le conteneur Docker en utilisant l'image construite
-                    bat "docker run -d -p 8339:80 --name applications_container_latest faika/applications:latest"
-                }
-            }
-        
-        }
 
         stage('Publish Docker Image') {
             steps {
                 script {
                     withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'DOCKERHUB_USERNAME', passwordVariable: 'DOCKERHUB_PASSWORD')]) {
                         bat 'docker login -u %DOCKERHUB_USERNAME% -p %DOCKERHUB_PASSWORD%'
-                        bat 'docker tag faika/applications:latest faika/applications:%BUILD_ID%'
-                        bat 'docker push faika/applications:%BUILD_ID%'
-                        bat 'docker push faika/applications:latest'
+                        bat 'docker tag faika/applications1:latest faika/applications1:%BUILD_ID%'
+                        bat 'docker push faika/applications1:%BUILD_ID%'
+                        bat 'docker push faika/applications1:latest'
                     }
                 }
             }
