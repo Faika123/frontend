@@ -54,14 +54,7 @@ pipeline {
                 }
             }
         }
-        stage('kubernetes Deployment') {
-            steps {
-                script {
-                   bat 'kubectl apply -f frontend-deployment.yaml'
-                   bat 'kubectl apply -f frontend-service.yaml' 
-                }
-            }
-        }
+
     }
     post {
         success {
